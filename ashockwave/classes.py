@@ -35,6 +35,16 @@ class flow():
 
         self.massFlux = self.gas.density()*self.v
 
+    def setVelocity(self, v):
+
+        self.v = v
+        self.M = v/np.sqrt(self.gam*self.R*self.gas.temperature())
+
+    def setMach(self, M):
+
+        self.M = M
+        self.v = M*np.sqrt(self.gam*self.R*self.gas.temperature())
+
     def flowSummary(self):
         '''
         Print out a summary of flow properties
