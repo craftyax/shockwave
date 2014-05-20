@@ -69,3 +69,5 @@ class shock():
 
         self.inflow = inflow
         self.outflow = outflow
+
+
