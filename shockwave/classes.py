@@ -91,7 +91,7 @@ class shock():
         self.setOutflowState(p2,h2)
         self.outflow.setVelocity(v2)
 
-    def convergeEpsilon(self,tol=1.0e-3):
+    def convergeEpsilon(self,tol=1.0e-5):
 
         epsilonOld = self.epsilon
         epsilonNew = tol+1.0
