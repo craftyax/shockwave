@@ -3,3 +3,6 @@
 
 # ignore .xml files created by Cantera
 *.xml
+
+# Ignore egg
+shockwave.egg-info
