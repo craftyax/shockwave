@@ -1,0 +1,5 @@
+# Ignore all pyc files
+*.pyc
+
+# ignore .xml files created by Cantera
+*.xml
