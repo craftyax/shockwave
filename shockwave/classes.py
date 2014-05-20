@@ -38,12 +38,14 @@ class flow():
     def setVelocity(self, v):
 
         self.v = v
-        self.M = v/np.sqrt(self.gam*self.R*self.gas.temperature())
+        self.a = np.sqrt(self.gam*self.R*self.gas.temperature())
+        self.M = v/self.a
 
     def setMach(self, M):
 
         self.M = M
-        self.v = M*np.sqrt(self.gam*self.R*self.gas.temperature())
+        self.a = np.sqrt(self.gam*self.R*self.gas.temperature())
+        self.v = M*self.a
 
     def flowSummary(self):
         '''
