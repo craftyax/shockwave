@@ -64,10 +64,39 @@ class shock():
 
     def __init__(self, inflow=flow(), outflow=flow()):
 
-        # Initial guess for velocity ratio
-        epsilon = 0.1
-
         self.inflow = inflow
         self.outflow = outflow
 
+        # Set initial guess for p and h
+        pinit=self.inflow.gas.density()*self.inflow.v**2.0
+        hinit=self.inflow.v**2/2.0
+        self.setOutflowState(pinit, hinit)
+
+    def setOutflowState(self, pinit, hinit):
+        
+        self.outflow.gas.setState_HP(hinit, pinit)
+        self.epsilon = self.inflow.gas.density()/self.outflow.gas.density()
+
+    def iterateShock(self):
+
+        p2 = (self.inflow.gas.pressure() + 
+              self.inflow.gas.density()*self.inflow.v**2*(1.0-self.epsilon))
+        h2 = (self.inflow.gas.enthalpy_mass() +
+              0.5*self.inflow.v**2*(1-self.epsilon**2))
+
+        v2 = self.inflow.v*self.epsilon
+
+        self.setOutflowState(p2,h2)
+        self.outflow.setVelocity(v2)
+
+    def convergeEpsilon(self,tol=1.0e-3):
+
+        epsilonOld = self.epsilon
+        epsilonNew = tol+1.0
+        
+        while np.abs(epsilonOld-epsilonNew) > tol:
+
+            epsilonOld = self.epsilon
+            self.iterateShock()
+            epsilonNew = self.epsilon
 
