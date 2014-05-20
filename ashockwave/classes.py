@@ -43,6 +43,8 @@ class flow():
         print "\nrho =", self.gas.density(), "kg/m^3"
         print "T =", self.gas.temperature(), "K"
         print "p =", self.gas.pressure(), "Pa"
+        print "R =", self.R, "J/kg/K"
+        print "gam =", self.gam
 
         print "\na =", self.a, "m/s"
         print "v =", self.v, "m/s"
