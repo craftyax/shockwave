@@ -49,4 +49,13 @@ class flow():
         print "\na =", self.a, "m/s"
         print "v =", self.v, "m/s"
         print "M =", self.M
-    
+
+class shock():
+
+    def __init__(self, inflow=flow(), outflow=flow()):
+
+        # Initial guess for velocity ratio
+        epsilon = 0.1
+
+        self.inflow = inflow
+        self.outflow = outflow
